@@ -12,3 +12,7 @@ For revision, data can be saved while viewing to a .bin file for later review or
 is stored as 10 bit values from 0 to 1023 for 0-5V range. Binary file can be read manually. Date and
 time are stored as a single double value at the beginning of the file, followed by the sampling rate as
 a single double value. All data following is saved as unsigned 16-bit values for voltage.
+
+When running with trigger, the microcontroller can output TTL pulses during acquisition, every N pulses,
+or toggled every N pulses. Alternatively, the microcontroller can read in a trigger pulse and record to 
+the output .bin file. The trigger is recorded as a logical embedded within the MSB of the 16-bit value.
