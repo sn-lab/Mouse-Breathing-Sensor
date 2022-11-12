@@ -1,5 +1,5 @@
-#define cbi(sfr, bit) (_SFR_BYTE(sfr) &= ~_BV(bit))
-#define sbi(sfr, bit) (_SFR_BYTE(sfr) |= _BV(bit))
+//#define cbi(sfr, bit) (_SFR_BYTE(sfr) &= ~_BV(bit))
+//#define sbi(sfr, bit) (_SFR_BYTE(sfr) |= _BV(bit))
 unsigned long t0;
 unsigned long t_int;
 unsigned int val;
@@ -7,13 +7,15 @@ byte buf[2];
 byte command;
 
 void setup() {
-  // 
-  sbi(ADCSRA, ADPS2);
-  cbi(ADCSRA, ADPS1);
-  cbi(ADCSRA, ADPS0);
+  //
+  //sbi(ADCSRA, ADPS2);
+  //cbi(ADCSRA, ADPS1);
+  //cbi(ADCSRA, ADPS0);
+  ADC0_CTRLC = 0x54;
   Serial.begin(115200);
   pinMode(A0, INPUT);
   t_int = 1000; // default sampling rate of 1/1000us (1 kHz)
+  pulseNum = 10;
 }
 
 void loop() {
@@ -31,7 +33,7 @@ void loop() {
         Serial.print(t_int);
         break;
       case 2:
-        // sample and print data
+        // sample and print data, no trigger
         t0 = micros();
         while (!Serial.available()) {
           if ((micros() - t0) > t_int) {
@@ -62,8 +64,7 @@ unsigned long changeValue(byte n) {
 boolean checkTimeout() {
   boolean timeout = true;
   unsigned long tlast = millis();
-  while (Serial.available()<1 && ((millis() - tlast) <= 10))
-    Serial.print(millis()-tlast);
+  while (Serial.available() < 1 && ((millis() - tlast) <= 10))
     timeout = (millis() - tlast) > 10;
   return timeout;
 }
