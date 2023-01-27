@@ -10,8 +10,11 @@ second up to 60 seconds. To save on RAM, data is maintained at 90 seconds max.
 
 For revision, data can be saved while viewing to a .bin file for later review or analysis. Voltage data
 is stored as 10 bit values from 0 to 1023 for 0-5V range. Binary file can be read manually. Date and
-time are stored as a single double value at the beginning of the file, followed by the sampling rate as
-a single double value. All data following is saved as unsigned 16-bit values for voltage.
+time are stored as a double value at the beginning of the file, followed by the sampling rate as
+a double value. The next byte indicates the number of channels, typically 1. A loop begins until the 
+number of channels are met where by the next byte indicates the number of characters for the channel name
+and the following characters are the channel name. All data following is saved as unsigned 16-bit values 
+for voltage.
 
 When running with trigger, the microcontroller can output TTL pulses during acquisition, every N pulses,
 or toggled every N pulses. Alternatively, the microcontroller can read in a trigger pulse and record to 
