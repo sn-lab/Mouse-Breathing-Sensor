@@ -19,3 +19,15 @@ for voltage.
 When running with trigger, the microcontroller can output TTL pulses during acquisition, every N pulses,
 or toggled every N pulses. Alternatively, the microcontroller can read in a trigger pulse and record to 
 the output .bin file. The trigger is recorded as a logical embedded within the MSB of the 16-bit value.
+
+v2 Notes:
+Some component values were changed from v1 to v2
+ - resistors in the precision rectifier reduced from 1M to 1k
+ - some resistor/capacitor values adjusted for filtering
+ - resistor for piezo reduced from 1M to 470k
+A zener diode was added at the piezo to prevent overvoltage spikes due to impacts from damaging the first
+op-amp. The value is set at 5.1V in the parts list but can range between 5 and 6V based on the op-amp's
+tolerance.
+
+When producing a board, be sure the PCB version folder and parts list match. The overall footprint of the
+board and microcontroller code has not changed.
