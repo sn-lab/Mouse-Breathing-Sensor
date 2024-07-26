@@ -18,7 +18,7 @@ Download the BreathingSensorWithTrigger_web.exe onto a computer running Windows 
 
 Assembling the board
 
-The .zip file contains the GERBER files for PCB construction. Prototyping board companies such as PCBway and JLCPCB offer low-cost production. All of the component values and IC names should be included in the silkscreen. Solder the components in beginning with the IC sockets. Move from the inside of the board out to more easily place the resistors and capacitors. The BNC connectors should be soldered to the bottom side of the board as indicated by the silkscreen. For placing the LED, keep the LED elevated 6-8mm above the board so that it can be seen when flashing.
+The .zip file contains the GERBER files for PCB construction. Prototyping board companies such as PCBway and JLCPCB offer low-cost production. All of the component values and IC names should be included in the silkscreen. Solder the components in, beginning with the capacitors and resistors, leaving room for the IC sockets. Move from the inside of the board out to more easily place the resistors and capacitors. The BNC connectors should be soldered to the bottom side of the board as indicated by the silkscreen. These have been moved below the board to allow the enclosure to completely close while allowing access to the potentiometers and switch. For placing the LED, keep the LED elevated 6-8mm above the board so that it can be seen when flashing. If there are flat notches in the legs of the LED, use these as a guide to set the height.
 Once assembled, verify connections are good by taking measurements across components or by testing continuity of IC socket pins and connections further along the copper traces.
 
 
@@ -26,14 +26,14 @@ Once assembled, verify connections are good by taking measurements across compon
 Calibrating the notch filter
 
 Calibration will require a signal generator and oscilloscope. Remove all sources of power and remove the IC closest to the 3 trimmers from its socket. Orient the board so that the SPST switch is furthest away and the BNC connectors are to the left.
-Place the output probe of the signal generator into pin 1 (top left with notch upward) of the exposed IC socket. Place the input probe of the oscilloscope to pin 5 of the exposed IC socket (bottom right with notch upward). Connect both ground probes from the signal generator and oscilloscope to the pin 4 (bottom left with notch upward) of the socket, or through the GND pin of the screw terminal. 
+Place the output probe of the signal generator into pin 1 (top left with notch upward) of the exposed IC socket. Place the input probe of the oscilloscope to pin 5 of the exposed IC socket (bottom right with notch upward). Connect both ground probes from the signal generator and oscilloscope to the pin 4 (bottom left with notch upward) of the socket, or through the GND pin of the screw terminal block. 
 Set the signal generator to output a sine wave at 1V at 50 or 60Hz (depending on country AC frequency) with no DC offset. Be sure the sine wave is visible on the oscilloscope. Begin by adjusting the bottom left trimmer (1) until the signal reaches a local minimum (will increase in either direction). Switch to adjusting the top (2) and bottom right (3) trimmers to further shrink the signal. Alternate between (2) and (3) while ensuring the shape of the waveform remains sinusoidal without additional harmonics introduced. Return to (1) and iteratively adjust the trimmers until the signal is within the noise floor of the oscilloscope. The signal may remain sinusoidal but not accurately measureable (<20mV, typical).
 
 
 
 Soldering wire connections to the Arduino
 
-4 wires will need to be soldered to teh pins of the Arduino. Soldering to the top of the board and slightly to the side is recommended and will allow for the Arduino to sit flat in the printed housing. With the USB port positioned to the right, solder wires to the top GND pin, 5V pin, A7 and A0 with 4-5cm of wire.
+4 wires will need to be soldered to teh pins of the Arduino. Soldering to the top of the board and slightly to the side is recommended and will allow for the Arduino to sit flat in the printed housing. With the USB port positioned to the right, solder wires to the top GND pin, 5V pin, A7 and A0 with 4-5cm of wire. All connections will be on the same side.
 
 
 
