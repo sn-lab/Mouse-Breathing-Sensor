@@ -1,0 +1,70 @@
+While this repository includes the source code and other documents, not all the files are needed. For copy/paste or fast assembly, these are the files needed for ordering parts, printing the PCB, setting up the Arduino code, printing the housing, and installing the app:
+	1. Respiratory Sensor Parts List v3.xlsx
+	2. PCB/v3/BreathingSensorWithTriggerV3.zip
+		a. PCB/v3/BreathingSensorWithTriggerV3_BOM.xlsx (optional for assembly services)
+	3. Arduino/BreathingSensorNanoEveryWithTrigger/BreathingSensorNanoEveryWithTrigger.ino
+	4a. STL/Housing_XX.stl
+		i. XX can be translated as "Imperial" or "Metric" for use with 4-40 screws or M3x0.5 screws
+	4b. STL/Lid.stl
+	5. BreathingSensorWithTrigger.exe
+
+
+
+Uploading to the Arduino
+
+1. Download the Arduino IDE from the arduino.cc website (1.8.19 recommended). 
+2. If using a Nano Every, the board will need to be added via the Boards Manager. Skip to step 3 otherwise
+	- Select Tools>Board: >Boards Manager...
+	- Search Nano Every or megaAVR
+	- Install the board to the IDE
+3. Open the "BreathingSensorNanoEveryWithTrigger.ino" file or "BreathingSensorWithTrigger.ino" file (for Uno, Nano, and Micro)
+4. Select the appropriate port with the Arduino connected via USB under Tools>Port. Be sure that the selected Board is correct for the model
+5. Upload the program to the board
+
+
+
+
+Installing the .exe file
+TODO: Mac installation
+
+Download the BreathingSensorWithTrigger_web.exe onto a computer running Windows 10 or newer. Run the installation. The program will need to download the runtime package from Matlab, which will require an internet connection and 1GB of disk space. Once finished, connect the Arduino and verify that the board is detected by the program and that the program receives data from the microcontroller.
+
+** FOR REFERENCE FOR ASSEMBLY, SETTING THE NOTCH FILTER, AND CONNECTING THE ARDUINO, SEE "BreathingSensorAssembly.png" **
+
+
+PCB Assembly
+TODO: PCB Company Assembly services
+
+The .zip file contains the GERBER files for PCB construction. Prototyping board companies such as PCBway and JLCPCB offer low-cost production. All of the component values and IC names should be included in the silkscreen. Solder the components in, beginning with the capacitors and resistors, leaving room for the ICs or IC sockets. Move from the inside of the board out to more easily place the resistors and capacitors. The BNC connectors should be soldered to the bottom side of the board as indicated by the silkscreen. These have been moved below the board to allow the enclosure to completely close while allowing access to the potentiometers and switch. For placing the LED, keep the LED elevated 6-8mm above the board (use the 6mm spacer in the parts list for accurate placement) so that it can be seen when flashing. If the spacer is not used and there are flat notches in the legs of the LED, use these as a guide to set the height. Finally, solder in the Arduino Nano or Nano Every. This is easiest with headers. Place the headers that come with the Nano/Nano Every into the holes outlined on the silkscreen so that the long side of the pins go down through the holes and the black spacers are sitting on top of the board. Solder the pins in place. Position the Nano/Nano Every over the pins so that the USB port is face up and aligned with the silkscreen USB symbol. Solder these connections.
+
+Once assembled, verify connections are good by taking measurements across components or by testing continuity of IC socket pins and connections further along the copper traces.
+
+
+
+Calibrating the notch filter
+
+Calibration will require a signal generator and oscilloscope (If not available, see note below). Remove all sources of power and remove the IC closest to the 3 trimmers from its socket. Orient the board so that the SPST switch is furthest away and the BNC connectors are to the left. Place the output probe of the signal generator into pin 1 (top left with notch upward) of the exposed IC socket. Place the input probe of the oscilloscope to pin 5 of the exposed IC socket (bottom right with notch upward). Connect both ground probes from the signal generator and oscilloscope to the pin 4 (bottom left with notch upward) of the socket, or through the GND pin of the screw terminal block. 
+Set the signal generator to output a sine wave at 1V at 50 or 60Hz (depending on country AC frequency) with no DC offset. Be sure the sine wave is visible on the oscilloscope. Begin by adjusting the bottom left trimmer (1) until the signal reaches a local minimum (will increase in either direction). Switch to adjusting the top (2) and bottom right (3) trimmers to further shrink the signal. Alternate between (2) and (3) while ensuring the shape of the waveform remains sinusoidal without additional harmonics introduced. Return to (1) and iteratively adjust the trimmers until the signal is within the noise floor of the oscilloscope. The signal may remain sinusoidal but not accurately measureable (<20mV, typical).
+* Note: if the equipment is not available, set trimmers 2 and 3 to 13kOhm (measure with a multimeter with the device NOT connected to power) and trimmer 1 to 27kOhm *
+
+
+
+Device Assembly
+
+Place the finished PCB into the housing and secure using 4-40 screws or M3 screws. Some adjustment may be needed to get the 2-pin connector through the gap in the side wall. The lid should fit easily on top around the switch, potentiometers and LED and should come off on its own.
+
+
+
+Sensor Assembly
+
+1a. If the piezo does not have connected wire leads, solder stranded wire (AWG22 or thinner) to the buzzer element or piezo. The positive wire should be soldered to the center disk, taking care not to melt the material. Light contact and a pre-tinned wire should be used to minimize risk of damage. The negative wire should be soldered to the outer gold disk. When holding the disk with helping hands, or other assistive tools, be careful not to place exposed contacts across the two disks as the heat can cause a voltage spike to arc through. Flatten down any sharp or protruding bumps with the iron.
+1b. If the buzzer element or piezo has wire leads connected, solder the extended wire to those wires and cover with heatshrink or electrical tape. 
+2. The 2-wire cable should be long enough to reach the animal with the board near the user for adjustments (1-2m). Cut a connector assmebly in half, strip the insulation a few millimeters with a wire stripper or carefully with scissors, and solder the newly exposed wires to the cable connected to the piezo. The wires should be arranged so that the positive wire goes to the positive indicator on the board.
+3. Once the piezo is soldered, electrical tape, or other insulating material can cover the piezo and wires to reduce risk of shorting the sensor and protect the animal from residual solder protrusions.
+
+
+
+Testing the system
+
+Connect the assembled sensor to the 2-pin connector on the side wall. Power the Arduino via USB to a computer or wall outlet. With an oscilloscope, connect to the top BNC (BNC trio facing left) and press lightly on the sensor to look for oscillations. Adjust the right potentiometer to verify that the signal amplitude changes. Flip the switch to the left and tap while adjusting the left potentiometer. Verify that the LED flickers. Change the oscilloscope probe to the middle BNC connector and verify that TTL pulses are visible.
+Open the BreathingSensor program on the computer. Click Start to being receiving data from the microcontroller. Lightly tap the piezo to see fluctuations in the received data. Click Stop and change the settings to output a trigger during recording, every N pulses, or toggle every N pulses. Connect the oscilloscope to the bottom BNC port. Click Start and verify that the signal changes by the trigger type behavior selected.
