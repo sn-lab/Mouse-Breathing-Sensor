@@ -31,3 +31,12 @@ tolerance.
 
 When producing a board, be sure the PCB version folder and parts list match. The overall footprint of the
 board and microcontroller code has not changed.
+
+v3 Notes:
+ - Layout was modified to have microcontroller (Nano or Nano Every or similar footprint) soldered directly to
+the board for secure connections
+ - The digital pin used for I/O TTL signals has been changed
+ - PCB zip files have two versions where one is for the user to read the values and do the assembly. The second version has component labels for 3rd-party assembly services.
+ -  STL files were adjusted for better fits from the lid to the housing body
+ -  The app now displays input TTL signals to the microcontroller
+ -  A Windows and Mac version of the app will both be available.
