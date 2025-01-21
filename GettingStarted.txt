@@ -1,7 +1,0 @@
-This document will cover the steps needed to order parts and assemble the sensor. 
-	
-While this repository includes the source code and other documents, not all the files are needed. For copy/paste assembly, these are the files needed for ordering parts, printing the PCB, setting up the Arduino code, and installing the app:
-	1. Arduino/BreathingSensorNanoEveryWithTrigger/BreathingSensorNanoEveryWithTrigger.ino
-	2. BreathingSensorParts_v3.xlsx
-	3. PCB/v3/BreathingSensorWithTriggerV3.zip
-	4. BreathingSensorWithTrigger.exe
