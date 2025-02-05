@@ -40,8 +40,14 @@ for n=1:header.ChannelNumber
     header.Names{n} = name(:)';
 end
 data = fread(FID,[header.ChannelNumber len],'uint16');
-data = data';
 fclose(FID);
+
+data = data';
+if any(data(:,2)>=2^15)
+    header.Names{end+1} = 'Trigger';
+    trigger = data(:,2)>=2^15;
+    data(:,3) = trigger*5;
+end
 switch(OutputType)
     case 'table'
         data = array2table(data,'VariableNames',header.Names);
