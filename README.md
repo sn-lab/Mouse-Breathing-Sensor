@@ -37,6 +37,6 @@ v3 Notes:
 the board for secure connections
  - The digital pin used for I/O TTL signals has been changed
  - PCB zip files have two versions where one is for the user to read the values and do the assembly. The second version has component labels for 3rd-party assembly services.
- -  STL files were adjusted for better fits from the lid to the housing body
+ -  STL files were adjusted for better fits from the lid to the housing body. In addition, the "Imperial" file uses 4-40 screws for securing the PCB while the "Metric" file uses M3x0.5 screws
  -  The app now displays input TTL signals to the microcontroller
  -  A Windows and Mac version of the app will both be available.
