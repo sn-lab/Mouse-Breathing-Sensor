@@ -1,20 +1,19 @@
-//#define cbi(sfr, bit) (_SFR_BYTE(sfr) &= ~_BV(bit))
-//#define sbi(sfr, bit) (_SFR_BYTE(sfr) |= _BV(bit))
+#define cbi(sfr, bit) (_SFR_BYTE(sfr) &= ~_BV(bit))
+#define sbi(sfr, bit) (_SFR_BYTE(sfr) |= _BV(bit))
 unsigned long t0;
 unsigned long t_int;
 unsigned int val;
 byte buf[2];
 byte command;
-byte trigPin = 10; // change 10 to 21 for using analog pin 7 in older versions
+byte trigPin = 10; //digital pin 10
 byte pulseNum;
 byte counter;
 
 void setup() {
   //
-  //sbi(ADCSRA, ADPS2);
-  //cbi(ADCSRA, ADPS1);
-  //cbi(ADCSRA, ADPS0);
-  ADC0_CTRLC = 0x54;
+  sbi(ADCSRA, ADPS2);
+  cbi(ADCSRA, ADPS1);
+  cbi(ADCSRA, ADPS0);
   Serial.begin(115200);
   pinMode(A0, INPUT);
   t_int = 1000; // default sampling rate of 1/1000us (1 kHz)
@@ -154,6 +153,7 @@ boolean checkTimeout() {
   boolean timeout = true;
   unsigned long tlast = millis();
   while (Serial.available() < 1 && ((millis() - tlast) <= 10))
-    timeout = (millis() - tlast) > 10;
+    Serial.print(millis() - tlast);
+  timeout = (millis() - tlast) > 10;
   return timeout;
 }
