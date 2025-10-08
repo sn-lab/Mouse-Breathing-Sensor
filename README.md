@@ -1,4 +1,7 @@
 # Mouse-Breathing-Sensor
+NOTE: THE CURRENT ZENER DIODE SELECTED WAS SHOWN TO ADD A LOT OF SYSTEM NOISE. 
+WE ARE CURRENTLY EXAMINING ALTERNATIVE OPTIONS TO REDUCE SIGNAL NOISE.
+FOR NOW, OMIT THE ZENER DIODE FROM ASSEMBLY
 
 Matlab app for the breathing sensor can be installed as a standalone app or opened from within Matlab. 
 Upload Arduino code to Arduino before opening Matlab code. Matlab app will query connected Arduinos
@@ -24,7 +27,7 @@ v2 Notes:
 Some component values were changed from v1 to v2
  - resistors in the precision rectifier reduced from 1M to 1k
  - some resistor/capacitor values adjusted for filtering
- - resistor for piezo reduced from 1M to 470k
+ - resistor for piezo reduced from 1M to 220k
 A zener diode was added at the piezo to prevent overvoltage spikes due to impacts from damaging the first
 op-amp. The value is set at 5.1V in the parts list but can range between 5 and 6V based on the op-amp's
 tolerance.
