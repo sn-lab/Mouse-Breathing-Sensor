@@ -1,11 +1,10 @@
 # Mouse-Breathing-Sensor
-NOTE: THE CURRENT ZENER DIODE SELECTED WAS SHOWN TO ADD A LOT OF SYSTEM NOISE. 
-WE ARE CURRENTLY EXAMINING ALTERNATIVE OPTIONS TO REDUCE SIGNAL NOISE.
-FOR NOW, OMIT THE ZENER DIODE FROM ASSEMBLY
 
 Matlab app for the breathing sensor can be installed as a standalone app or opened from within Matlab. 
 Upload Arduino code to Arduino before opening Matlab code. Matlab app will query connected Arduinos
-for correct uploaded program.
+for correct uploaded program. On Windows, for the first use, the program will ask if the AC power system
+used is 50Hz or 60Hz. This will establish preliminary sampling rate and filtering options that can be changed
+later.
 
 App can allow for variable sampling rate from the sensor up to 5kHz. Parameters for max detectable
 breathing rate and minimum peak prominence signal are editable in real-time. Window can be viewed from 1
@@ -43,3 +42,13 @@ the board for secure connections
  -  STL files were adjusted for better fits from the lid to the housing body. In addition, the "Imperial" file uses 4-40 screws for securing the PCB while the "Metric" file uses M3x0.5 screws
  -  The app now displays input TTL signals to the microcontroller
  -  A Windows and Mac version of the app will both be available.
+
+v4 Notes:
+ - the calculated respiratory and heart rates are now displayed below the initial plots. These can be hidden and the displayed time can be adjusted from the previous 10 seconds to the previous 3 minutes
+ - the signal for the heart rate calculation and respiratory rate calculation can now be inverted independently for more accurate simultaneous measures
+ - a Mac- and Windows- compatible mlapp that can be run in MATLAB (2024b and later) is now available. We are troubleshooting the standalone Mac app to ensure proper function
+ - some additional behavioral changes were added
+
+Planned updates:
+ - a new board design that allows for 2 simultaneous piezos to be read with the same footprint
+ - we promise, a standalone Mac app is on the way
