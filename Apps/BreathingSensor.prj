@@ -1,0 +1,240 @@
+<deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
+  <configuration build-checksum="3352838611" file="G:\BreathingSensor\BreathingSensor.prj" location="G:\BreathingSensor" name="BreathingSensor" preferred-package-location="C:\Users\kahoop\Documents\MATLAB\BreathingSensor\C:\Users\Daniel\Documents\MATLAB\Apps\BreathingSensor\BreathingSensor\for_redistribution" target="target.ezdeploy.standalone" target-name="Application Compiler">
+    <param.appname>BreathingSensor</param.appname>
+    <param.icon>${PROJECT_ROOT}\BreathingSensor_resources\icon.ico</param.icon>
+    <param.icons>
+      <file>${PROJECT_ROOT}\BreathingSensor_resources\icon_48.png</file>
+      <file>${PROJECT_ROOT}\BreathingSensor_resources\icon_32.png</file>
+      <file>${PROJECT_ROOT}\BreathingSensor_resources\icon_24.png</file>
+      <file>${PROJECT_ROOT}\BreathingSensor_resources\icon_16.png</file>
+    </param.icons>
+    <param.version>4.1</param.version>
+    <param.authnamewatermark>Daniel Rivera</param.authnamewatermark>
+    <param.email>dar342@cornell.edu</param.email>
+    <param.company>Cornell University</param.company>
+    <param.summary>Allows for the use of an Arduino as a data acquisition board for monitoring respiratory signals from an anesthetized animal</param.summary>
+    <param.description>Update: 2.0
+ - includes digital filtering options such as a moving average filter centered on 20Hz, 50Hz or 60Hz harmonics or lowpass filters at 50Hz or 100Hz
+ - heart rate estimation now included
+ - datalogging now includes the option to save recorded breathing and heart rates to a .csv file once per second
+ - signal peaks can now be displayed over the trace for visual accuracy
+
+Update 2.1:
+included a button to estimate the required peak prominences for breathing rate and heart rate detection
+
+Update 2.2:
+dropdown peak detection algorithm options for respiratory rate
+ - "Basic" includes no additional processing before calling findpeaks
+ - "Pan-Tompkins modified" is to mimic a designed analog peak-detection circuit, using a rectifier instead of a squarer circuit
+ - "Pan-Tompkins original" is based on the true algorithm which is differentiated, filtered, squared, and lowpassed
+Algorithm chosen can be viewed for better assessment of prominence
+ - prominence will be adjusted accordingly during estimates
+ - to be scaled down to better match circuitry performance
+Performance changes
+ - estimation of heart rate now uses the top 25% max rate value to avoid artificially slower rates due to fast breathing signal
+ - prominence estimation uses median absolute differences (heart)
+ - peak detection when "invert" is checked now applies to both heart and breathing (only breathing before)
+Bug fixes
+ - fixed bug where checkboxes were accessible while running, causing the app to freeze up and crash
+ - fixed issue where selecting to save a file did not start in the folder listed in the Path text field
+
+Update 3.0:
+Now displays processed algorithms in addition to the original when PanTompkins or Modified PanTompkins is selected in additional windows. Processing algorithm applied to approximate heart rate waveform in addition to respiratory. Method of determining heart rate updated for Basic peak detection.
+Bug Fixes
+- fixed crash that occurred when using non-Basic peak detection within first few seconds
+- fixed issue where Arduino would not be detected upon opening the program
+
+Update 3.1:
+Algorithms for HR and RR detection are now separate options.
+Additional Trigger Option now available. Options summarized below:
+ - None (default): no trigger recorded or output
+ - External: external trigger connected and recorded by Arduino. For file size reduction, Boolean trigger value embedded as MSB of the analog data
+ - Session: trigger remains high from the start of recording to the end
+ - Per Sample: trigger is high when sample is being read or transmitted
+ - Toggle: trigger changes state every N samples (default = 10)
+
+
+Update 3.1.1:
+minor bug fixes
+sampling rate changed from ceil(1e6/fs) to round(1e6/fs)
+changed app behavior to single instance
+
+Update 4.0:
+Added Trigger Channel visualization when recording external. Can be toggled on and off
+Added plots for up to 3 minutes of heart rate and respiratory rate measurements. Can be toggled on and off and reset when paramters are adjusted.
+Signal inversion can now be applied independently for respiratory and heart rate detection.
+Added compatibility for Mac OS
+
+Update 4.1:
+Adjusted serial communication for more stability.
+Added automatic peak prominence adjustment after 5 seconds of recording
+Window size adjusts when the rates plots are toggled on and off
+Creates setting file to store some startup setting values, such as location, filter and sample rates, and selected checkboxes (Windows only)</param.description>
+    <param.screenshot>${PROJECT_ROOT}\BreathingSensor_resources\BreathingSensorLogo_v2.jpeg</param.screenshot>
+    <param.guid />
+    <param.installpath.string>\Cornell University\BreathingSensor\</param.installpath.string>
+    <param.installpath.combo>option.installpath.programfiles</param.installpath.combo>
+    <param.logo>${PROJECT_ROOT}\BreathingSensor_resources\BreathingSensorLogo_v2.jpeg</param.logo>
+    <param.install.notes>Requires for BreathingSensorWithTrigger.ino to be uploaded to accompanying Arduino Uno, Micro, or Nano or BreathingSensorNanoEveryWithTrigger.ino to Arduino Nano Every</param.install.notes>
+    <param.target.install.notes />
+    <param.intermediate>${PROJECT_ROOT}\BreathingSensor\for_testing</param.intermediate>
+    <param.files.only>${PROJECT_ROOT}\BreathingSensor\for_redistribution_files_only</param.files.only>
+    <param.output>${PROJECT_ROOT}\BreathingSensor\for_redistribution</param.output>
+    <param.logdir>${PROJECT_ROOT}\BreathingSensor</param.logdir>
+    <param.enable.clean.build>false</param.enable.clean.build>
+    <param.user.defined.mcr.options />
+    <param.target.type>subtarget.standalone</param.target.type>
+    <param.support.packages />
+    <param.web.mcr>true</param.web.mcr>
+    <param.package.mcr>false</param.package.mcr>
+    <param.no.mcr>false</param.no.mcr>
+    <param.web.mcr.name>BreathingSensorWithTrigger</param.web.mcr.name>
+    <param.package.mcr.name>MyAppInstaller_mcr</param.package.mcr.name>
+    <param.no.mcr.name>MyAppInstaller_app</param.no.mcr.name>
+    <param.windows.command.prompt>true</param.windows.command.prompt>
+    <param.create.log>false</param.create.log>
+    <param.log.file />
+    <param.native.matlab>false</param.native.matlab>
+    <param.checkbox>false</param.checkbox>
+    <param.example />
+    <param.help.text>Syntax 
+	  -? 
+	 
+ Input Arguments 
+	 -?  print help on how to use the application 
+	 input arguments 
+ Description 
+ 	 Update: 2.0
+ - includes digital filtering options such as a moving average filter centered on 20Hz, 50Hz or 60Hz harmonics or lowpass filters at 50Hz or 100Hz
+ - heart rate estimation now included
+ - datalogging now includes the option to save recorded breathing and heart rates to a .csv file once per second
+ - signal peaks can now be displayed over the trace for visual accuracy
+
+Update 2.1:
+included a button to estimate the required peak prominences for breathing rate and heart rate detection
+
+Update 2.2:
+dropdown peak detection algorithm options for respiratory rate
+ - "Basic" includes no additional processing before calling findpeaks
+ - "Pan-Tompkins modified" is to mimic a designed analog peak-detection circuit, using a rectifier instead of a squarer circuit
+ - "Pan-Tompkins original" is based on the true algorithm which is differentiated, filtered, squared, and lowpassed
+Algorithm chosen can be viewed for better assessment of prominence
+ - prominence will be adjusted accordingly during estimates
+ - to be scaled down to better match circuitry performance
+Performance changes
+ - estimation of heart rate now uses the top 25% max rate value to avoid artificially slower rates due to fast breathing signal
+ - prominence estimation uses median absolute differences (heart)
+ - peak detection when "invert" is checked now applies to both heart and breathing (only breathing before)
+Bug fixes
+ - fixed bug where checkboxes were accessible while running, causing the app to freeze up and crash
+ - fixed issue where selecting to save a file did not start in the folder listed in the Path text field
+
+Update 3.0:
+Now displays processed algorithms in addition to the original when PanTompkins or Modified PanTompkins is selected in additional windows. Processing algorithm applied to approximate heart rate waveform in addition to respiratory. Method of determining heart rate updated for Basic peak detection.
+Bug Fixes
+- fixed crash that occurred when using non-Basic peak detection within first few seconds
+- fixed issue where Arduino would not be detected upon opening the program
+
+Update 3.1:
+Algorithms for HR and RR detection are now separate options.
+Additional Trigger Option now available. Options summarized below:
+ - None (default): no trigger recorded or output
+ - External: external trigger connected and recorded by Arduino. For file size reduction, Boolean trigger value embedded as MSB of the analog data
+ - Session: trigger remains high from the start of recording to the end
+ - Per Sample: trigger is high when sample is being read or transmitted
+ - Toggle: trigger changes state every N samples (default = 10)
+
+
+Update 3.1.1:
+minor bug fixes
+sampling rate changed from ceil(1e6/fs) to round(1e6/fs)
+changed app behavior to single instance
+
+Update 4.0:
+Added Trigger Channel visualization when recording external. Can be toggled on and off
+Added plots for up to 3 minutes of heart rate and respiratory rate measurements. Can be toggled on and off and reset when paramters are adjusted.
+Signal inversion can now be applied independently for respiratory and heart rate detection.
+Added compatibility for Mac OS
+
+Update 4.1:
+Adjusted serial communication for more stability.
+Added automatic peak prominence adjustment after 5 seconds of recording
+Window size adjusts when the rates plots are toggled on and off
+Creates setting file to store some startup setting values, such as location, filter and sample rates, and selected checkboxes (Windows only)</param.help.text>
+    <unset>
+      <param.guid />
+      <param.installpath.string />
+      <param.installpath.combo />
+      <param.target.install.notes />
+      <param.intermediate />
+      <param.files.only />
+      <param.output />
+      <param.logdir />
+      <param.enable.clean.build />
+      <param.user.defined.mcr.options />
+      <param.target.type />
+      <param.support.packages />
+      <param.web.mcr />
+      <param.package.mcr />
+      <param.no.mcr />
+      <param.package.mcr.name />
+      <param.no.mcr.name />
+      <param.windows.command.prompt />
+      <param.create.log />
+      <param.log.file />
+      <param.native.matlab />
+      <param.checkbox />
+      <param.example />
+    </unset>
+    <fileset.main>
+      <file>${PROJECT_ROOT}\BreathingSensor.mlapp</file>
+    </fileset.main>
+    <fileset.resources />
+    <fileset.package />
+    <fileset.depfun />
+    <build-deliverables>
+      <file location="${PROJECT_ROOT}\BreathingSensor\for_testing" name="BreathingSensor.exe" optional="false">G:\BreathingSensor\BreathingSensor\for_testing\BreathingSensor.exe</file>
+      <file location="${PROJECT_ROOT}\BreathingSensor\for_testing" name="splash.png" optional="false">G:\BreathingSensor\BreathingSensor\for_testing\splash.png</file>
+      <file location="${PROJECT_ROOT}\BreathingSensor\for_testing" name="readme.txt" optional="true">G:\BreathingSensor\BreathingSensor\for_testing\readme.txt</file>
+    </build-deliverables>
+    <workflow />
+    <matlab>
+      <root>C:\Program Files\MATLAB\R2024b</root>
+      <toolboxes>
+        <toolbox name="matlabcoder" />
+        <toolbox name="gpucoder" />
+        <toolbox name="neuralnetwork" />
+      </toolboxes>
+      <toolbox>
+        <matlabcoder>
+          <enabled>true</enabled>
+        </matlabcoder>
+      </toolbox>
+      <toolbox>
+        <gpucoder>
+          <enabled>true</enabled>
+        </gpucoder>
+      </toolbox>
+      <toolbox>
+        <neuralnetwork>
+          <enabled>true</enabled>
+        </neuralnetwork>
+      </toolbox>
+    </matlab>
+    <platform>
+      <unix>false</unix>
+      <mac>false</mac>
+      <windows>true</windows>
+      <win2k>false</win2k>
+      <winxp>false</winxp>
+      <vista>false</vista>
+      <linux>false</linux>
+      <solaris>false</solaris>
+      <osver>10.0</osver>
+      <os32>false</os32>
+      <os64>true</os64>
+      <arch>win64</arch>
+      <matlab>true</matlab>
+    </platform>
+  </configuration>
+</deployment-project>
