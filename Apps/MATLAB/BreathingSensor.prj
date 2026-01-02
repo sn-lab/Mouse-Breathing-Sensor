@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
-  <configuration build-checksum="3352838611" file="G:\BreathingSensor\BreathingSensor.prj" location="G:\BreathingSensor" name="BreathingSensor" preferred-package-location="C:\Users\kahoop\Documents\MATLAB\BreathingSensor\C:\Users\Daniel\Documents\MATLAB\Apps\BreathingSensor\BreathingSensor\for_redistribution" target="target.ezdeploy.standalone" target-name="Application Compiler">
+  <configuration build-checksum="3352838611" file="D:\BreathingSensor\BreathingSensor.prj" location="D:\BreathingSensor" name="BreathingSensor" preferred-package-location="C:\Users\kahoop\Documents\MATLAB\BreathingSensor\C:\Users\Daniel\Documents\MATLAB\Apps\BreathingSensor\BreathingSensor\for_redistribution" target="target.ezdeploy.standalone" target-name="Application Compiler">
     <param.appname>BreathingSensor</param.appname>
     <param.icon>${PROJECT_ROOT}\BreathingSensor_resources\icon.ico</param.icon>
     <param.icons>
@@ -8,7 +8,7 @@
       <file>${PROJECT_ROOT}\BreathingSensor_resources\icon_24.png</file>
       <file>${PROJECT_ROOT}\BreathingSensor_resources\icon_16.png</file>
     </param.icons>
-    <param.version>4.1</param.version>
+    <param.version>4.2</param.version>
     <param.authnamewatermark>Daniel Rivera</param.authnamewatermark>
     <param.email>dar342@cornell.edu</param.email>
     <param.company>Cornell University</param.company>
@@ -69,7 +69,12 @@ Update 4.1:
 Adjusted serial communication for more stability.
 Added automatic peak prominence adjustment after 5 seconds of recording
 Window size adjusts when the rates plots are toggled on and off
-Creates setting file to store some startup setting values, such as location, filter and sample rates, and selected checkboxes (Windows only)</param.description>
+Creates setting file to store some startup setting values, such as location, filter and sample rates, and selected checkboxes (Windows only)
+reset behavior to multiple instances
+
+Update 4.2:
+Bug fixes
+Behavioral change to change heart rate marker during inversion</param.description>
     <param.screenshot>${PROJECT_ROOT}\BreathingSensor_resources\BreathingSensorLogo_v2.jpeg</param.screenshot>
     <param.guid />
     <param.installpath.string>\Cornell University\BreathingSensor\</param.installpath.string>
@@ -160,7 +165,12 @@ Update 4.1:
 Adjusted serial communication for more stability.
 Added automatic peak prominence adjustment after 5 seconds of recording
 Window size adjusts when the rates plots are toggled on and off
-Creates setting file to store some startup setting values, such as location, filter and sample rates, and selected checkboxes (Windows only)</param.help.text>
+Creates setting file to store some startup setting values, such as location, filter and sample rates, and selected checkboxes (Windows only)
+reset behavior to multiple instances
+
+Update 4.2:
+Bug fixes
+Behavioral change to change heart rate marker during inversion</param.help.text>
     <unset>
       <param.guid />
       <param.installpath.string />
@@ -193,32 +203,20 @@ Creates setting file to store some startup setting values, such as location, fil
     <fileset.package />
     <fileset.depfun />
     <build-deliverables>
-      <file location="${PROJECT_ROOT}\BreathingSensor\for_testing" name="BreathingSensor.exe" optional="false">G:\BreathingSensor\BreathingSensor\for_testing\BreathingSensor.exe</file>
-      <file location="${PROJECT_ROOT}\BreathingSensor\for_testing" name="splash.png" optional="false">G:\BreathingSensor\BreathingSensor\for_testing\splash.png</file>
-      <file location="${PROJECT_ROOT}\BreathingSensor\for_testing" name="readme.txt" optional="true">G:\BreathingSensor\BreathingSensor\for_testing\readme.txt</file>
+      <file location="${PROJECT_ROOT}\BreathingSensor\for_testing" name="readme.txt" optional="true">D:\BreathingSensor\BreathingSensor\for_testing\readme.txt</file>
+      <file location="${PROJECT_ROOT}\BreathingSensor\for_testing" name="BreathingSensor.exe" optional="false">D:\BreathingSensor\BreathingSensor\for_testing\BreathingSensor.exe</file>
+      <file location="${PROJECT_ROOT}\BreathingSensor\for_testing" name="splash.png" optional="false">D:\BreathingSensor\BreathingSensor\for_testing\splash.png</file>
     </build-deliverables>
     <workflow />
     <matlab>
       <root>C:\Program Files\MATLAB\R2024b</root>
       <toolboxes>
         <toolbox name="matlabcoder" />
-        <toolbox name="gpucoder" />
-        <toolbox name="neuralnetwork" />
       </toolboxes>
       <toolbox>
         <matlabcoder>
           <enabled>true</enabled>
         </matlabcoder>
-      </toolbox>
-      <toolbox>
-        <gpucoder>
-          <enabled>true</enabled>
-        </gpucoder>
-      </toolbox>
-      <toolbox>
-        <neuralnetwork>
-          <enabled>true</enabled>
-        </neuralnetwork>
       </toolbox>
     </matlab>
     <platform>
@@ -237,5 +235,4 @@ Creates setting file to store some startup setting values, such as location, fil
       <matlab>true</matlab>
     </platform>
   </configuration>
-
 </deployment-project>
